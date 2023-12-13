@@ -10,4 +10,4 @@ WORKDIR /aws-imds-v1-finder
 COPY bpf.c bpf.c
 COPY snoop.py snoop.py
 
-CMD ["python3", "snoop.py"]
+CMD ["python3", "-u", "snoop.py"]

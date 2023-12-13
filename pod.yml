@@ -1,15 +1,14 @@
 apiVersion: v1
-  # TODO: it should be daemonset
 kind: Pod
 metadata:
   name: aws-imds-v1-finder
 spec:
+  hostPID: true
+  hostNetwork: true
   containers:
   - name: aws-imds-v1-finder
     image: mrtc0/aws-imds-v1-finder
-    command: ["tail", "-f", "/dev/null"]
     securityContext:
-      # TODO: should be set host network
       privileged: true
     volumeMounts:
     - mountPath: /lib/modules
