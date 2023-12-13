@@ -17,8 +17,12 @@ def print_imds_event(cpu, data, size):
     if is_imds_v2_request(pkt):
         return
 
-    print("IMDS v1 Request found: PID: %d, Comm: %s, Parent Comm: %s\n" % (event.pid, event.comm.decode(), event.parent_comm.decode()))
+    log = "IMDS v1 request found: Comm: {} (PID: {})".format(event.comm.decode(), event.pid[0])
 
+    if event.parent_comm and event.pid[1]:
+        log += ", Parent Comm: {} (PID: {})".format(event.parent_comm.decode(), event.pid[1])
+
+    print(log)
 
 if(__name__ == "__main__"):
     if os.geteuid() != 0:
