@@ -1,0 +1,33 @@
+apiVersion: aaps/v1
+kind: DaemonSet
+metadata:
+  name: aws-imds-v1-finder
+spec:
+  selector:
+    matchLables:
+      name: aws-imds-v1-finder
+  template:
+    metadata:
+      labels:
+        name: aws-imds-v1-finder
+    spec:
+      hostPID: true
+      hostNetwork: true
+      containers:
+      - name: aws-imds-v1-finder
+        image: mrtc0/aws-imds-v1-finder
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /lib/modules
+          name: lib-modules
+          readOnly: true
+        - mountPath: /sys/kernel/debug
+          name: sys-kernel-debug
+      volumes:
+        - name: lib-modules
+          hostPath:
+            path: /lib/modules
+        - name: sys-kernel-debug
+          hostPath:
+            path: /sys/kernel/debug
