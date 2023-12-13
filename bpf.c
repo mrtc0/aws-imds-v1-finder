@@ -93,5 +93,4 @@ int trace_sock_sendmsg(struct pt_regs *ctx)
     }
 
    return 0;
-
 }
