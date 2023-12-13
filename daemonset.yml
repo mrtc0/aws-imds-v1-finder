@@ -1,4 +1,4 @@
-apiVersion: aaps/v1
+apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: aws-imds-v1-finder
